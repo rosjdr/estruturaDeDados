@@ -1,11 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <unistd.h>
 /*
     Seq: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
     Exceto os dois primeiros termos da sequência, os outros são a soma dos dois anteriores
 */
+
+//implementação da memoização em C
+typedef struct memo
+{
+    int n;
+    int resultado;
+} Memo;
+
 
 //calcula fibonacci de maneira recursiva
 int fib_rec(int n, int *cont){
