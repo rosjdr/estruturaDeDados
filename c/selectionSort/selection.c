@@ -35,22 +35,26 @@ int main(int argc, char *argv[]){
 void selectionSort(int *vetor, int modoExibicao){
     int ultimaPosicao = TAM-1;
     int iteracoes = 0, trocas = 0;
-    while(ultimaPosicao>0){
-        for(int i=0; i<ultimaPosicao; i++){
-            iteracoes++;
-            if(vetor[i] > vetor[i+1]){
-                trocas++;
-                int aux = vetor[i];
-                vetor[i]=vetor[i+1];
-                vetor[i+1]=aux;
-                if (modoExibicao){
-                    printf("ULTIMA POSICAO: %d [%d<->%d] -> ", ultimaPosicao, i, i+1);
-                    imprime_vetor(vetor);
-                }
+    for(int i=0; i<TAM-1;i++){
+        int menor = i;
+        for(int j=i+1; j<TAM; j++){
+            if(vetor[j] < vetor[menor]){
+                menor = j;
             }
+            iteracoes++;
         }
-        ultimaPosicao--;
+        if(menor != i){
+            int aux = vetor[i];
+            vetor[i] = vetor[menor];
+            vetor[menor] = aux;
+            if (modoExibicao){
+                printf("PASSAGEM: %d [%d<->%d] -> ", i, i, menor);
+                imprime_vetor(vetor);
+            }
+            trocas++;
+        }
     }
+
     printf("\nITERACOES: %d\n", iteracoes);
     printf("TROCAS   : %d\n", trocas);
 }
