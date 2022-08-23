@@ -53,7 +53,6 @@ void bubbleSort(int *vetor, int modoExibicao){
     }
     printf("\nITERACOES: %d\n", iteracoes);
     printf("TROCAS   : %d\n", trocas);
-
 }
 
 void inicializa_vetor(int *vetor, int modo){
