@@ -33,26 +33,20 @@ int main(int argc, char *argv[]){
 }
 
 void isertionSort(int *vetor, int modoExibicao){
-    int ultimaPosicao = TAM-1;
     int iteracoes = 0, trocas = 0;
-    for(int i=0; i<TAM-1;i++){
-        int menor = i;
-        for(int j=i+1; j<TAM; j++){
-            if(vetor[j] < vetor[menor]){
-                menor = j;
-            }
-            iteracoes++;
-        }
-        if(menor != i){
-            int aux = vetor[i];
-            vetor[i] = vetor[menor];
-            vetor[menor] = aux;
-            if (modoExibicao){
-                printf("PASSAGEM: %d [%d<->%d] -> ", i, i, menor);
-                imprime_vetor(vetor);
-            }
+    for(int i=1; i<TAM;i++){ //tem que começar da segunda posição
+        int atual = vetor[i];
+        int j;
+        for(j = i; j>0 && atual < vetor[j-1]; j--){
+            vetor[j] = vetor[j-1];
             trocas++;
         }
+        vetor[j] = atual;        
+        if (modoExibicao && i!=j){
+            printf("PASSAGEM: %d [%d->%d] -> ", i, i, j);
+            imprime_vetor(vetor);
+        }
+        iteracoes++;
     }
     if (modoExibicao){
         printf("\nITERACOES: %d\n", iteracoes);
