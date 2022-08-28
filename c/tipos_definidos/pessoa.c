@@ -53,7 +53,6 @@ int main(){
     printf("O tamanho do buffer é: %d\n", BUFSIZ);
 
     printf("A pessoa %s, do sexo %c, tem %d anos, pesa %lfkg e mora na rua %s, bairro %s da cidade %s\n", p.nome,p.sexo,p.idade,p.peso, p.endereco.rua, p.endereco.bairro, p.endereco.cidade);
-    setbuf(stdout, NULL);
-
+    
     return 0;
 }
