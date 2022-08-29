@@ -56,11 +56,7 @@ int main(){
     printf("xyz dentro de [str1]: %s\n", strstr(str1, "xyz") ? "Encontrado" : "Nao Encontrado");
     printf("indice de mei dentro de [str1]: %ld\n", strstr(str1, "mei") - str1);
 
-
-    strlwr(str1);
-    // printf("[str1-minusculo]: %s\n", str1);
-    // strupr(str1);
-    // printf("[str1-maiusculo]: %s\n", str1 );
+    
 
 
     return 0;
