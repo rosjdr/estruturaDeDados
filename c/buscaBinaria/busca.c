@@ -6,7 +6,8 @@
 
 void inicializa_vetor(int *vetor, int modo);
 void imprime_vetor(int *vetor);
-int buscaSequencial(int *vetor, int tamanho, int elemento);
+void isertionSort(int *vetor, int modoExibicao);
+int buscaBinaria(int *vetor, int tamanho, int elemento);
 
 int main(int argc, char *argv[]){
     int v[TAM];
@@ -27,18 +28,51 @@ int main(int argc, char *argv[]){
     inicializa_vetor(v,tipoGeracao);
     printf("%s","Vetor original: ");
     imprime_vetor(v);
+    isertionSort(v,modo);
+    printf("%s","Vetor ordenado: ");
+    imprime_vetor(v);
     e = (rand() % TAM)+1;
-    printf("Procurado: %d - Encontrado na posicao: %d\n", e, buscaSequencial(v,TAM,e));
+    printf("Procurado: %d - Encontrado na posicao: %d\n", e, buscaBinaria(v,TAM,e));
     return 0;
 }
 
-int buscaSequencial(int *vetor, int tamanho, int elemento){
-    for(int i=0; i<tamanho; i++){
-        if(vetor[i] == elemento){
-            return i;
+int buscaBinaria(int *vetor, int tamanho, int elemento){
+    int meio, inicio = 0, final = tamanho -1;
+    while(inicio <= final){
+        meio = (inicio + final) / 2;
+        if (elemento < vetor[meio]){
+            final = meio -1;
+        } else {
+            if(elemento > vetor[meio]){
+                inicio = meio + 1;
+            } else {
+                return meio;
+            }
         }
     }
     return -1;
+}
+
+void isertionSort(int *vetor, int modoExibicao){
+    int iteracoes = 0, trocas = 0;
+    for(int i=1; i<TAM;i++){ //tem que começar da segunda posição
+        int atual = vetor[i];
+        int j;
+        for(j = i; j>0 && atual < vetor[j-1]; j--){
+            vetor[j] = vetor[j-1];
+            trocas++;
+        }
+        vetor[j] = atual;        
+        if (modoExibicao && i!=j){
+            printf("PASSAGEM: %d [%d->%d] -> ", i, i, j);
+            imprime_vetor(vetor);
+        }
+        iteracoes++;
+    }
+    if (modoExibicao){
+        printf("\nITERACOES: %d\n", iteracoes);
+        printf("TROCAS   : %d\n", trocas);
+    }
 }
 
 void inicializa_vetor(int *vetor, int modo){
