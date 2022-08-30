@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
     inicializa_vetor(v,tipoGeracao);
     printf("%s","Vetor original: ");
     imprime_vetor(v);
-    heapSort(v,TAM-1);
+    heapSort(v,TAM);
     printf("%s","Vetor ordenado: ");
     imprime_vetor(v);
     return 0;
@@ -38,7 +38,8 @@ void criaHeap(int *v, int pai, int fim){
     int aux = v[pai];
     int filho = 2 * pai + 1;
     while (filho <= fim){
-        if(v[filho] < v[filho +1]) filho++;
+        if (filho < fim)
+            if(v[filho] < v[filho +1]) filho++;
         if (aux < v[filho]){
             v[pai] = v[filho];
             pai = filho;
