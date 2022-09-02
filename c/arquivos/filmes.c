@@ -22,7 +22,9 @@ typedef struct lista_filmes banco_de_dados;
 FILE *abrir_arquivo(char nome[], char modo[]);
 void carregar_filmes(banco_de_dados *banco, FILE *arquivo);
 void mostra_filmes(banco_de_dados *bd);
+void mostra_filmes_ordem_cronologica(banco_de_dados *bd);
 void mostra_filmes_por_ano(banco_de_dados *bd);
+void ordena_films_ano(filme *filmes);
 
 int main(){
     FILE *arquivo; 
@@ -48,6 +50,9 @@ int main(){
         {
         case 1:
             mostra_filmes(&bd);
+            break;
+        case 2:
+            mostra_filmes_ordem_cronologica(&bd);
             break;
         case 3:
             mostra_filmes_por_ano(&bd);
@@ -84,6 +89,45 @@ void mostra_filmes_por_ano(banco_de_dados *bd){
         printf("NAO FORAM ENCONTRADOS FILMES PARA ESTE ANO!\n\n");
     }
 
+}
+
+void isertionSort(int *vetor, int modoExibicao){
+    int ultimaPosicao = TAM-1;
+    int iteracoes = 0, trocas = 0;
+    for(int i=0; i<TAM-1;i++){
+        int menor = i;
+        for(int j=i+1; j<TAM; j++){
+            if(vetor[j] < vetor[menor]){
+                menor = j;
+            }
+            iteracoes++;
+        }
+        if(menor != i){
+            int aux = vetor[i];
+            vetor[i] = vetor[menor];
+            vetor[menor] = aux;
+            if (modoExibicao){
+                printf("PASSAGEM: %d [%d<->%d] -> ", i, i, menor);
+                imprime_vetor(vetor);
+            }
+            trocas++;
+        }
+    }
+    if (modoExibicao){
+        printf("\nITERACOES: %d\n", iteracoes);
+        printf("TROCAS   : %d\n", trocas);
+    }
+}
+
+void mostra_filmes_ordem_cronologica(banco_de_dados *bd){
+    banco_de_dados temp;
+
+    temp = *bd;
+
+    printf("===== LISTA DE FILMES EM ORDEM CRONOLOGICA =====\n\n");
+    for(int i=0; i < temp.total_filmes; i++){
+        printf("%d - %s - %d\n", temp.filmes[i].id, temp.filmes[i].nome, temp.filmes[i].ano);
+    }
 }
 
 void mostra_filmes(banco_de_dados *bd){
