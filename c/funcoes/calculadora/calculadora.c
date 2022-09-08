@@ -3,27 +3,38 @@
 
 #define OPCAO_SAIR 5
 
-//declaração de variáveis globais que pode ser acessada em todas as funções
-int opcao; 
-float valor1, valor2, resultado;
-
-void mostrar_resultado(char sinal){
-    printf("RESULTADO: %.2f %c %.2f = %.2f\n",valor1, sinal, valor2, resultado);
+/**
+ * Função para apresentar o resultado de qualquer operação
+ * 
+ * @param sinal     indica qual é o sinal da operação que será apresentado
+ * @param x         primeiro termo da operação que será impresso na tela
+ * @param y         segundo termo da operação que será impresso na tela
+ * @param resultado resultado da operação que será impresso na tela
+ * 
+ * @return void
+ * 
+ * @author Rodrigo Carvalho
+*/
+void mostrar_resultado(char sinal, float x, float y, float resultado){
+    printf("RESULTADO: %.2f %c %.2f = %.2f\n",x, sinal, y, resultado);
 }
 
-void ler_valores(){
+void ler_valores(float *x, float *y){
     printf("DIGITE O VALOR 1: ");
-    scanf("%f", &valor1);
+    scanf("%f", x);
     printf("DIGITE O VALOR 2: ");
-    scanf("%f", &valor2);
+    scanf("%f", y);
 }
 
-void calcular(char operacao){
-    if(operacao=='+') resultado=valor1+valor2;
-    if(operacao=='-') resultado=valor1-valor2;
-    if(operacao=='*') resultado=valor1*valor2;
-    if(operacao=='/') resultado=valor1/valor2;
-    mostrar_resultado(operacao);
+float calcular(char operacao, float x, float y){
+    float resultado; 
+
+    if(operacao=='+') resultado=x+y;
+    if(operacao=='-') resultado=x-y;
+    if(operacao=='*') resultado=x*y;
+    if(operacao=='/') resultado=x/y;
+
+    return resultado;
 }
 
 void exibir_menu(){
@@ -38,24 +49,31 @@ void exibir_menu(){
 
 int main()
 {
+    int opcao; 
+    float valor1, valor2, resultado;
+    char sinal;
     do{
         exibir_menu();
         scanf("%d", &opcao);
         if (opcao != OPCAO_SAIR) 
-            ler_valores();
+            ler_valores(&valor1, &valor2);
         switch(opcao){
             case 1:
-                calcular('+');
+                sinal = '+';                
                 break;
             case 2:
-                calcular('-');
+                sinal = '-';
                 break;
             case 3:
-                calcular('*');
+                sinal = '*';
                 break;
             case 4:
-                calcular('/');
+                sinal = '/';
                 break;
+        }
+        if (opcao != OPCAO_SAIR) {
+            resultado = calcular(sinal, valor1, valor2);
+            mostrar_resultado(sinal, valor1, valor2, resultado);
         }
     } while (opcao != OPCAO_SAIR);
     return 0;
