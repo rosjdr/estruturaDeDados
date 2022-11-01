@@ -1,3 +1,3 @@
 #include <stdio.h>
 
-int soma(int x, int y); -> Carlos
+int soma(int x, int y);
