@@ -46,7 +46,7 @@ int main(){
     int *ptr_v = (int *) malloc(sizeof(int)*5); //o tamanho pode ser determinado por uma variável
     ptr_v[0] = 98; //depois de alocado pode acessar normalmente pelo nome da variável
     printf("%p : %d\n", ptr_v, *(ptr_v));
-    printf("Tamanho de ptr_v: %d\n", sizeof(ptr_v));
+    printf("Tamanho de ptr_v: %ld\n", sizeof(ptr_v));
 
     return 0;
 }
