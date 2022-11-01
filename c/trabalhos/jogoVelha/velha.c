@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "jogoVelhaLib.h"
 
 int main()
 {
+    Jogo jogo;
+
    int t[3][3] = {0};
    int jogador = 1;
    int linha,coluna;
