@@ -6,7 +6,7 @@ int main()
 {
     Jogo jogo;
 
-    inicializaJogo(&jogo, 2);
+    inicializaJogo(&jogo, 1);
     jogar(&jogo);
 
     return 0;

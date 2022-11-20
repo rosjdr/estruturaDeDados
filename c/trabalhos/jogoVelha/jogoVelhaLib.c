@@ -27,7 +27,6 @@ int leiaJogada(Jogo *jogo){
     scanf("%d %d",&linha,&coluna);
     //validar a jogada
     if(!isJogadaValida(*jogo, linha, coluna)){
-        // printf("OPCAO INVALIDA!\n");
         return 1;
     }
     //armazenando a jogada
@@ -109,13 +108,35 @@ void limpaTela(){
     #endif  
 }
 
+void jogador2(Jogo *jogo){
+    int linha = 1, coluna = 1;
+    for(int i = 1; i <= 3; i++){
+        for(int j = 1; j <= 3; j++){
+            if(isJogadaValida(*jogo, i, j)){
+                linha = i;
+                coluna = j;
+                break;
+            }
+        }
+        if(isJogadaValida(*jogo, linha, coluna))
+            break;
+    }
+    jogo->tabuleiro[linha-1][coluna-1] = jogo->jogadorVez;
+}
+
 void jogar(Jogo *jogo){
 
     while(1){
         //lendo a jogada
-        while(leiaJogada(jogo)!=0){
-            printf("\nJOGADA INVALIDA!\n");
+        if(jogo->numeroJogadores==2 ||
+          (jogo->numeroJogadores == 1 && jogo->jogadorVez == 1)){
+            while(leiaJogada(jogo)!=0){
+                printf("\nJOGADA INVALIDA!\n");
+            }
+        } else {
+            jogador2(jogo);
         }
+
         //imprime o tabuleiro       
         desenhaTabuleiro(*jogo);              
 
