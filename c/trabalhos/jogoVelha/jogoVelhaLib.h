@@ -1,16 +1,22 @@
 #define QTDE_LINHAS 3
 #define QTDE_COLUNAS 3
 
-typedef struct{
-    int t[QTDE_LINHAS][QTDE_COLUNAS];
-} Tabuleiro;
-
 typedef struct {
     char marca;
 } Jogador;
 
 typedef struct {
-    Tabuleiro tabuleiro;
+    int tabuleiro[QTDE_LINHAS][QTDE_COLUNAS];
     Jogador jodador1, jogador2;
     int vencedor;
+    int jogadorVez;    
 } Jogo;
+
+void inicializaJogo(Jogo *j);
+void limpaTela();
+void desenhaTabuleiro(Jogo jogo);
+int verificaVencedor(Jogo j);
+int validarEmpate(Jogo jogo);
+int leiaJogada(Jogo *jogo);
+void alternarJogador(Jogo *jogo);
+void jogar(Jogo *jogo);
