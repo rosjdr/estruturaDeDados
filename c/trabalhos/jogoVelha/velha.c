@@ -6,11 +6,8 @@ int main()
 {
     Jogo jogo;
 
-    int linha,coluna;   
+    inicializaJogo(&jogo, 2);
+    jogar(&jogo);
 
-    inicializaJogo(&jogo);
-    while(1){
-        jogar(jogo);        
-    }
     return 0;
 }

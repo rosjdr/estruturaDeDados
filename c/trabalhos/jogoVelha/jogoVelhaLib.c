@@ -77,9 +77,10 @@ void limpaTabuleiro(int t[][QTDE_COLUNAS]){
            t[i][j] = 0;
 }
 
-void inicializaJogo(Jogo *j){
+void inicializaJogo(Jogo *j, int numeroJogadores){
     j->vencedor = 0;
     j->jogadorVez = 1;
+    j->numeroJogadores = numeroJogadores;
 
     limpaTabuleiro(j->tabuleiro);
     desenhaTabuleiro(*j);
@@ -109,21 +110,24 @@ void limpaTela(){
 }
 
 void jogar(Jogo *jogo){
-    //lendo a jogada
-    leiaJogada(jogo);
 
-    //imprime o tabuleiro       
-    desenhaTabuleiro(*jogo);              
+    while(1){
+        //lendo a jogada
+        while(leiaJogada(jogo)!=0){
+            printf("\nJOGADA INVALIDA!\n");
+        }
+        //imprime o tabuleiro       
+        desenhaTabuleiro(*jogo);              
 
-    if(verificaVencedor(jogo)){
-        printf("\nJOGADOR %d VENCEDOR!!!!", jogo.jogadorVez);
-        break;
+        if(verificaVencedor(*jogo)){
+            printf("\nJOGADOR %d VENCEDOR!!!!", jogo->jogadorVez);
+            break;
+        }
+        //validar empate
+        if(validarEmpate(*jogo)){
+            printf("\nEMPATOU!!!\n");
+            break;
+        }
+        alternarJogador(jogo);
     }
-    //validar empate
-    if(validarEmpate(jogo)){
-        printf("\nEMPATOU!!!\n");
-        break;
-    }
-
-    alternarJogador(&jogo);
 }

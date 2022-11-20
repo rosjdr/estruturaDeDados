@@ -8,11 +8,12 @@ typedef struct {
 typedef struct {
     int tabuleiro[QTDE_LINHAS][QTDE_COLUNAS];
     Jogador jodador1, jogador2;
+    int numeroJogadores;
     int vencedor;
     int jogadorVez;    
 } Jogo;
 
-void inicializaJogo(Jogo *j);
+void inicializaJogo(Jogo *j, int numeroJogadores);
 void limpaTela();
 void desenhaTabuleiro(Jogo jogo);
 int verificaVencedor(Jogo j);
