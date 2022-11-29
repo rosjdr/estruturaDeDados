@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "jogovelhalib.h": "c"
+        "jogovelhalib.h": "c",
+        "aula_filmes": "c"
     }
 }
