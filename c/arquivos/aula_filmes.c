@@ -27,6 +27,8 @@ int main(){
     FILE *arquivo;  
     Banco bd;
     int op;  
+    char nome[100];
+    int ano;    
 
     do {
         printf("\n\n====MENU DE OPCOES====\n");
@@ -42,6 +44,18 @@ int main(){
             arquivo = abrir_arquivo(NOME_ARQUIVO, LEITURA); 
             carregar_filmes(&bd, arquivo);
             mostra_filmes(&bd);
+            fechar_arquivo(arquivo);
+            break;
+        case 2:   
+            setbuf(stdin, NULL);          
+            printf("NOME DO FILME: ");
+            fgets(nome, 100, stdin);
+            setbuf(stdin, NULL);
+            nome[strlen(nome)-1] = 0; //remover o \n do final
+            printf("ANO DO FILME: ");
+            scanf("%d", &ano);
+            arquivo = abrir_arquivo(NOME_ARQUIVO, ESCRITA);
+            fprintf(arquivo, "\n%s(%d)", nome, ano);
             fechar_arquivo(arquivo);
             break;        
         default:
