@@ -83,7 +83,7 @@ FILE *abrir_arquivo(char nome[], modo modo){
         default:
             break;
     }
-    if(p == NULL){ 
+    if(modo == LEITURA && p == NULL){ 
         printf("Arquivo não encontrado");
         exit(1); 
     }
