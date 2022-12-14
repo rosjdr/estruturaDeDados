@@ -15,9 +15,9 @@ typedef struct {
     int total_filmes;
 } Banco;
 
-typedef enum {LEITURA, ESCRITA} modo;
+typedef enum {LEITURA, ESCRITA} Modo;
 
-FILE *abrir_arquivo(char nome[], modo modo);
+FILE *abrir_arquivo(char nome[], Modo modo);
 void fechar_arquivo(FILE *a);
 void carregar_filmes(Banco *banco, FILE *arquivo);
 void mostra_filmes(Banco *bd);
@@ -70,7 +70,7 @@ int main(){
     return 0;
 }
 
-FILE *abrir_arquivo(char nome[], modo modo){
+FILE *abrir_arquivo(char nome[], Modo modo){
     FILE *p; 
     switch (modo)
     {

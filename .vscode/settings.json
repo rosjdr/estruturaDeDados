@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "jogovelhalib.h": "c",
-        "aula_filmes": "c"
+        "aula_filmes": "c",
+        "conio.h": "c"
     }
 }
