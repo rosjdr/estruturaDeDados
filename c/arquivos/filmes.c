@@ -91,7 +91,7 @@ void mostra_filmes_por_ano(banco_de_dados *bd){
 
 }
 
-void isertionSort(int *vetor, int modoExibicao){
+void insertionSort(int *vetor, int modoExibicao){
     int ultimaPosicao = TAM-1;
     int iteracoes = 0, trocas = 0;
     for(int i=0; i<TAM-1;i++){

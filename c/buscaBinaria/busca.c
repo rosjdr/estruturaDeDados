@@ -6,7 +6,7 @@
 
 void inicializa_vetor(int *vetor, int modo);
 void imprime_vetor(int *vetor);
-void isertionSort(int *vetor, int modoExibicao);
+void insertionSort(int *vetor, int modoExibicao);
 int buscaBinaria(int *vetor, int tamanho, int elemento);
 
 int main(int argc, char *argv[]){
@@ -50,7 +50,7 @@ int buscaBinaria(int *vetor, int tamanho, int elemento){
     return -1;
 }
 
-void isertionSort(int *vetor, int modoExibicao){
+void insertionSort(int *vetor, int modoExibicao){
     int iteracoes = 0, trocas = 0;
     for(int i=1; i<TAM;i++){ //tem que começar da segunda posição
         int atual = vetor[i];

@@ -6,7 +6,7 @@
 
 void inicializa_vetor(int *vetor, int modo);
 void imprime_vetor(int *vetor);
-void isertionSort(int *vetor, int modoExibicao);
+void selectionSort(int *vetor, int modoExibicao);
 
 int main(int argc, char *argv[]){
     int v[TAM];
@@ -26,13 +26,13 @@ int main(int argc, char *argv[]){
     inicializa_vetor(v,tipoGeracao);
     printf("%s","Vetor original: ");
     imprime_vetor(v);
-    isertionSort(v,modo);
+    selectionSort(v,modo);
     printf("%s","Vetor ordenado: ");
     imprime_vetor(v);
     return 0;
 }
 
-void isertionSort(int *vetor, int modoExibicao){
+void selectionSort(int *vetor, int modoExibicao){
     int ultimaPosicao = TAM-1;
     int iteracoes = 0, trocas = 0;
     for(int i=0; i<TAM-1;i++){
